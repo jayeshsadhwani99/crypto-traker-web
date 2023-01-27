@@ -10,7 +10,7 @@ function App() {
     <div className="app">
       <Navbar />
       <main>
-        <div className="left">
+        <div className="left-content">
           <MarketStats />
           <TopMoving />
           <AllCoins />

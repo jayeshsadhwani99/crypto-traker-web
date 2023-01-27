@@ -1,0 +1,30 @@
+.coinElement {
+  padding: 0.5rem;
+  margin: 0.5rem;
+  margin-bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.tableColumn {
+  display: flex;
+  gap: 1rem;
+}
+
+.tableElement {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.tableColumn img {
+  width: 25px;
+  height: 25px;
+}

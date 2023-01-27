@@ -10,3 +10,7 @@
   font-size: var(--big-text);
   font-weight: bold;
 }
+
+.portfolioCoinsList {
+  width: 100%;
+}
