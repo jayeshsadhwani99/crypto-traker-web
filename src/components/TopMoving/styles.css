@@ -1,0 +1,10 @@
+.topMoving {
+  width: 100%;
+}
+
+.topMovingCoins {
+  display: flex;
+  overflow-x: scroll;
+  width: 100%;
+  gap: 1rem;
+}

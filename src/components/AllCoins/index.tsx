@@ -1,7 +1,11 @@
 import "./styles.css";
 
 function AllCoins() {
-  return <div>AllCoins</div>;
+  return (
+    <div className="allCoins">
+      <div className="title">All Coins</div>
+    </div>
+  );
 }
 
 export default AllCoins;

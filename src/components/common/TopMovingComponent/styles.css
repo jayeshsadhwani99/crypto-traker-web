@@ -1,0 +1,31 @@
+.topMovingComponent {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: var(--gray);
+  padding: 0.5rem 1.5rem;
+  margin: 1rem 0;
+  border-radius: 5px;
+}
+
+.topMovingComponent img {
+  width: 70px;
+  height: 70px;
+  margin-bottom: 1rem;
+}
+
+.topMovingComponent .symbol {
+  font-size: var(--title);
+  font-weight: bold;
+}
+
+.topMovingComponent .price {
+  font-size: var(--small-text);
+  font-weight: bold;
+}
+
+.topMovingComponent .change {
+  font-size: var(--body);
+  font-weight: bold;
+}

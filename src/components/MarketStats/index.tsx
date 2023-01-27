@@ -24,8 +24,9 @@ function MarketStats() {
     <div className="marketStats">
       <div className="title">Market Stats</div>
       <div className="stats">
-        {stats.map((stat) => (
+        {stats.map((stat, index) => (
           <MarketStatComponent
+            key={index}
             body={stat.body}
             title={stat.title}
             subtext={stat.subtext}
