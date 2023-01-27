@@ -1,0 +1,9 @@
+.marketStats {
+  width: 100%;
+}
+
+.stats {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+}

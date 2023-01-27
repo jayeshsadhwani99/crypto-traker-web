@@ -1,0 +1,30 @@
+main {
+  display: flex;
+  justify-content: space-around;
+  justify-content: flex-start;
+  height: 100%;
+}
+
+.app {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.left {
+  flex: 0.7;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+aside {
+  flex: 0.3;
+  border-left: 1px solid var(--secondary-color);
+}
+
+.title {
+  font-size: var(--title);
+  font-weight: bold;
+}

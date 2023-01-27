@@ -6,13 +6,26 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #000;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+  --brand-color: #0047ff;
+  --secondary-color: #fff;
+  --gray: #4b4b4b;
+  --negative: #be0c0c;
+  --positive: #02b429;
+
+  --big-text: 2.5rem;
+  --heading: 2rem;
+  --title: 1.5rem;
+  --body: 1.25rem;
+  --small-text: 0.8rem;
+  --sub-text: 0.75rem;
 }
 
 a {

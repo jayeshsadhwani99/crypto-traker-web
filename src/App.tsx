@@ -9,14 +9,16 @@ function App() {
   return (
     <div className="app">
       <Navbar />
-      <div className="left">
-        <MarketStats />
-        <TopMoving />
-        <AllCoins />
-      </div>
-      <div className="right">
-        <Portfolio />
-      </div>
+      <main>
+        <div className="left">
+          <MarketStats />
+          <TopMoving />
+          <AllCoins />
+        </div>
+        <aside>
+          <Portfolio />
+        </aside>
+      </main>
     </div>
   );
 }
