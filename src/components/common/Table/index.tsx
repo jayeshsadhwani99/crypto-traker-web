@@ -1,11 +1,12 @@
 import Refresh from "../../../assets/refresh-cw";
+import { Coin, holdingsValue } from "../../../models/coin";
 import "./styles.css";
 
 function Table({
   coins,
   isPortfolio = false,
 }: {
-  coins: Array<any>;
+  coins: Array<Coin>;
   isPortfolio?: boolean;
 }) {
   return (
@@ -27,53 +28,59 @@ function Table({
       </div>
       <div className="coinsList">
         {coins.map((coin, index) => (
-          <div className="coinElement" key={index}>
-            <div className="tableColumn">
-              <div className="tableElement">1</div>
-              <div className="tableElement">
-                <img src={coin.image} />
-                <div className="column">
-                  <div className="rowEl">{coin.name}</div>
-                  <div className="rowEl">{coin.symbol ?? "BTC"}</div>
-                </div>
-              </div>
-            </div>
-            <div className="tableColumn">
-              <div className="tableElement">
-                <div className="column">
-                  <div className="rowEl">{coin.price}</div>
-                  <div
-                    className="rowEl"
-                    style={{
-                      color:
-                        (coin.change ?? 0) < 0
-                          ? "var(--negative)"
-                          : "var(--positive)",
-                    }}
-                  >
-                    {coin.change}%
+          <a href={`/${coin.id}`}>
+            <div className="coinElement" key={index}>
+              <div className="tableColumn">
+                <div className="tableElement">{coin.market_cap_rank}</div>
+                <div className="tableElement">
+                  <img src={coin.image} />
+                  <div className="column">
+                    <div className="rowEl">{coin.name}</div>
+                    <div className="rowEl" id="symbol">
+                      {coin.symbol}
+                    </div>
                   </div>
                 </div>
-
-                {isPortfolio && (
+              </div>
+              <div className="tableColumn right">
+                <div className="tableElement">
                   <div className="column">
-                    <div className="rowEl">${coin.value ?? "234.23"}</div>
+                    <div className="rowEl">${coin.current_price}</div>
                     <div
                       className="rowEl"
                       style={{
                         color:
-                          (coin.change ?? 0) < 0
+                          (coin.price_change_percentage_24h ?? 0) < 0
                             ? "var(--negative)"
                             : "var(--positive)",
                       }}
                     >
-                      {coin.change}%
+                      {coin.price_change_percentage_24h?.toPrecision(2)}%
                     </div>
                   </div>
-                )}
+
+                  {isPortfolio && (
+                    <div className="column">
+                      <div className="rowEl">
+                        ${holdingsValue(coin).formatWithAbbreviations()}
+                      </div>
+                      <div
+                        className="rowEl"
+                        style={{
+                          color:
+                            (coin.price_change_percentage_24h ?? 0) < 0
+                              ? "var(--negative)"
+                              : "var(--positive)",
+                        }}
+                      >
+                        {coin.price_change_percentage_24h?.toPercent()}
+                      </div>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
-          </div>
+          </a>
         ))}
       </div>
     </>

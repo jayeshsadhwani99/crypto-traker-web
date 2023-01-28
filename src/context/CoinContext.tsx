@@ -6,7 +6,7 @@ import { Coin, Convert, updateHoldings } from "../models/coin";
 import { ConvertPortfolio, Portfolio } from "../models/portfolio";
 import { CoinDetail, ConvertCoinDetail } from "../models/coinDetail";
 
-interface CoinContextType {
+export interface CoinContextType {
   coins: Coin[];
   topMovingCoins: Coin[];
   portfolioCoins: Coin[];
@@ -33,7 +33,7 @@ export const CoinProvider = ({ children }: PropsWithChildren) => {
     try {
       const response = await axios.get(FETCH_COINS);
       const allCoins: Coin[] = response.data.map((e: any) =>
-        Convert.toCoin(e.toString())
+        Convert.toCoin(JSON.stringify(e))
       );
       setCoins(allCoins);
       configTopCoins();
@@ -105,7 +105,7 @@ export const CoinProvider = ({ children }: PropsWithChildren) => {
     const portfolio = localStorage.getItem("portfolio");
     if (portfolio)
       return JSON.parse(portfolio).map((e: any) =>
-        ConvertPortfolio.toPortfolio(e.toString())
+        ConvertPortfolio.toPortfolio(JSON.stringify(e))
       );
     else return [];
   }

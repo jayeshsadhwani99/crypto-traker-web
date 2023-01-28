@@ -1,3 +1,14 @@
+.coinsList a {
+  color: inherit;
+  transition: 0.2s;
+}
+
+.coinsList a:hover {
+  color: inherit;
+  background-color: var(--gray);
+  border-radius: 10px;
+}
+
 .coinElement {
   padding: 0.5rem;
   margin: 0.5rem;
@@ -19,6 +30,10 @@
   gap: 0.5rem;
 }
 
+.right .rowEl {
+  text-align: right;
+}
+
 .column {
   display: flex;
   flex-direction: column;
@@ -27,4 +42,8 @@
 .tableColumn img {
   width: 25px;
   height: 25px;
+}
+
+.coinElement #symbol {
+  text-transform: uppercase;
 }

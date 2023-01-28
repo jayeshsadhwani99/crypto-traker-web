@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { MARKET_DATA } from "../constants";
 import { Convert, MarketData } from "../models/marketData";
 
-interface MarketDataType {
+export interface MarketDataType {
   marketData: MarketData | null;
   getData: () => Promise<MarketData | undefined>;
 }
@@ -18,7 +18,7 @@ export const MarketDataProvider = ({ children }: PropsWithChildren) => {
     try {
       const response = await axios.get(MARKET_DATA);
       const marketData: MarketData = Convert.toMarketData(
-        response.data.toString()
+        JSON.stringify(response.data)
       );
       setMarketData(marketData);
       return marketData;
