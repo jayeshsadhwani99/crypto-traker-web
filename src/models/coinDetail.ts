@@ -57,7 +57,7 @@ export interface ReposURL {
 
 // Converts JSON strings to/from your types
 // and asserts the results of JSON.parse at runtime
-export class Convert {
+export class ConvertCoinDetail {
   public static toCoinDetail(json: string): CoinDetail {
     return cast(JSON.parse(json), r("CoinDetail"));
   }
