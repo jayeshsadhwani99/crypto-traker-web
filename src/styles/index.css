@@ -16,9 +16,9 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 
-  --brand-color: #0047ff;
+  --brand-color: #3a80e9;
   --secondary-color: #fff;
-  --gray: #333;
+  --gray: #1b1b1b;
   --negative: #be0c0c;
   --positive: #02b429;
 
@@ -43,7 +43,7 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: var(--blue);
   text-decoration: inherit;
 }
 a:hover {
