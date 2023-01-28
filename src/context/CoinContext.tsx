@@ -68,7 +68,7 @@ export const CoinProvider = ({ children }: PropsWithChildren) => {
   }
 
   function configTopCoins(coins: Coin[]): Coin[] {
-    const topMovers = coins.sort(
+    const topMovers = [...coins].sort(
       (a, b) =>
         (b?.price_change_percentage_24h ?? 0) -
         (a?.price_change_percentage_24h ?? 0)
