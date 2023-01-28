@@ -22,6 +22,7 @@
   --negative: #be0c0c;
   --positive: #02b429;
 
+  --very-big-text: 6rem;
   --big-text: 2.5rem;
   --heading: 2rem;
   --title: 1.5rem;
@@ -30,6 +31,14 @@
   --sub-text: 0.75rem;
 
   --chart-height: 25rem;
+
+  --white: #fff;
+  --black: #111;
+  --blue: #3a80e9;
+  --grey: #888;
+  --darkgrey: #1b1b1b;
+  --green: #61c96f;
+  --red: #f94141;
 }
 
 a {

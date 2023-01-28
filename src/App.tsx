@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RootData from "./components/RootData";
 import Root from "./pages";
+import About from "./pages/about";
 import Coin, { coinLoader } from "./pages/coin";
 
 const router = createBrowserRouter([
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
         loader: coinLoader,
       },
     ],
+  },
+  {
+    path: "about",
+    element: <About />,
   },
 ]);
 

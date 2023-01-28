@@ -1,0 +1,143 @@
+.about {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 3rem;
+  height: 100vh;
+}
+
+.about .left {
+  flex: 1;
+}
+
+.about .right {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  margin-left: auto;
+  /* position: relative; */
+}
+
+.heading-1,
+.heading-2 {
+  font-size: var(--very-big-text);
+  margin: 0px;
+  font-weight: 800;
+}
+
+.heading-2 {
+  color: var(--blue);
+}
+
+.heading-1:hover {
+  color: var(--black);
+  -webkit-text-stroke: 3px var(--white);
+  transition: all 0.3s;
+}
+
+.para {
+  color: var(--grey);
+  font-size: 1.2rem;
+}
+
+.btn-flex {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+}
+
+.gradient {
+  position: absolute;
+  max-width: 300px;
+  top: 10rem;
+  object-fit: contain;
+  z-index: 0;
+}
+
+.iphone {
+  position: absolute;
+  max-width: 380px;
+  object-fit: contain;
+  z-index: 1;
+  top: 5rem;
+}
+
+@media only screen and (max-width: 1250px) {
+  .about .left {
+    width: 60%;
+  }
+
+  .gradient {
+    max-width: 250px;
+    top: 4rem;
+  }
+  .iphone {
+    max-width: 300px;
+  }
+  .heading-1,
+  .heading-2 {
+    font-size: 5rem;
+  }
+}
+
+@media only screen and (max-width: 1050px) {
+  .gradient {
+    max-width: 230px;
+    top: 3rem;
+  }
+  .iphone {
+    max-width: 280px;
+  }
+  .heading-1,
+  .heading-2 {
+    font-size: 4rem;
+  }
+  .para {
+    font-size: 1rem;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .about {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 1rem 0;
+  }
+
+  .about .left {
+    flex: 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  .about .right {
+    justify-content: center;
+    margin-right: auto;
+    position: relative;
+  }
+
+  .iphone {
+    left: auto;
+    right: auto;
+  }
+
+  .heading-1,
+  .heading-2 {
+    font-size: 3rem;
+  }
+  .para {
+    font-size: 0.8rem;
+  }
+  .btn-flex {
+    justify-content: center;
+  }
+}
+
+@media only screen and (max-width: 380px) {
+  .about {
+    height: 120vh;
+  }
+}
