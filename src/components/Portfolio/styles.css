@@ -9,6 +9,7 @@
 .portfolio .title {
   font-size: var(--big-text);
   font-weight: bold;
+  margin-bottom: 1rem;
 }
 
 .portfolioCoinsList {

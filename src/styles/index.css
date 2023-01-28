@@ -28,6 +28,8 @@
   --body: 1.25rem;
   --small-text: 0.8rem;
   --sub-text: 0.75rem;
+
+  --chart-height: 25rem;
 }
 
 a {
