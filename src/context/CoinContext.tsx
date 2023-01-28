@@ -12,12 +12,29 @@ export interface CoinContextType {
   portfolioCoins: Coin[];
   coinDetails: CoinDetail | null;
   fetchCoins: () => Promise<Coin[] | undefined>;
-  getCoinDetails: (coin: Coin) => Promise<CoinDetail | undefined>;
+  getCoinDetails: (coin: string) => Promise<CoinDetail | undefined>;
   updatePortfolio: (coin: Coin, amount: number) => void;
   getPortfolio: () => Coin[];
 }
 
 export const CoinContext = createContext<CoinContextType | null>(null);
+
+export async function getCoinDetails(
+  coinId: string
+): Promise<CoinDetail | undefined> {
+  try {
+    const response = await axios.get(
+      `https://api.coingecko.com/api/v3/coins/${coinId}?localization=false&tickers=false&market_data=false&community_data=false&developer_data=false&sparkline=false`
+    );
+    const details: CoinDetail = ConvertCoinDetail.toCoinDetail(
+      JSON.stringify(response.data)
+    );
+    return details;
+  } catch (e: any) {
+    console.error("DEBUG: There was an error", e?.response?.data ?? e);
+    toast(`There was an error: ${e?.response?.data}`);
+  }
+}
 
 export const CoinProvider = ({ children }: PropsWithChildren) => {
   const [coins, setCoins] = useState<Coin[]>([]);
@@ -36,7 +53,7 @@ export const CoinProvider = ({ children }: PropsWithChildren) => {
         Convert.toCoin(JSON.stringify(e))
       );
       setCoins(allCoins);
-      configTopCoins();
+      configTopCoins(allCoins);
       getPortfolio();
       return allCoins;
     } catch (e: any) {
@@ -45,31 +62,20 @@ export const CoinProvider = ({ children }: PropsWithChildren) => {
     }
   }
 
-  function configTopCoins(): Coin[] {
+  async function coinDetail(coinId: string) {
+    const details = await getCoinDetails(coinId);
+    if (details) setCoinDetails(details);
+  }
+
+  function configTopCoins(coins: Coin[]): Coin[] {
     const topMovers = coins.sort(
       (a, b) =>
-        (a?.price_change_percentage_24h ?? 0) -
-        (b?.price_change_percentage_24h ?? 0)
+        (b?.price_change_percentage_24h ?? 0) -
+        (a?.price_change_percentage_24h ?? 0)
     );
 
     setTopMovingCoins(topMovers.slice(0, 5));
     return topMovers.slice(0, 5);
-  }
-
-  async function getCoinDetails(coin: Coin): Promise<CoinDetail | undefined> {
-    try {
-      const response = await axios.get(
-        `https://api.coingecko.com/api/v3/coins/${coin.id}?localization=false&tickers=false&market_data=false&community_data=false&developer_data=false&sparkline=false`
-      );
-      const details: CoinDetail = ConvertCoinDetail.toCoinDetail(
-        response.data.toString()
-      );
-      setCoinDetails(details);
-      return details;
-    } catch (e: any) {
-      console.error("DEBUG: There was an error", e?.response?.data ?? e);
-      toast(`There was an error: ${e?.response?.data}`);
-    }
   }
 
   function updatePortfolio(coin: Coin, amount: number) {

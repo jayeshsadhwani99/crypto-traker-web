@@ -1,9 +1,16 @@
 import { useLoaderData } from "react-router-dom";
 import MarketStatComponent from "../components/common/MarketStatComponent";
+import { getCoinDetails } from "../context/CoinContext";
+import { Coin } from "../models/coin";
+import { CoinDetail } from "../models/coinDetail";
 import "../styles/coin.css";
 
-export async function coinLoader({ params }: any) {
-  return { id: params.coinId, name: "Bitcoin" };
+export async function coinLoader({
+  params,
+}: any): Promise<CoinDetail | undefined> {
+  const coinDetails = await getCoinDetails(params.coinId);
+
+  if (coinDetails) return coinDetails;
 }
 
 const data = [
@@ -57,27 +64,16 @@ const additionalData = [
   },
 ];
 
-function Coin() {
-  const coin: any = useLoaderData();
+function CoinPage() {
+  const coin: CoinDetail | undefined = useLoaderData() as CoinDetail;
+
   return (
     <div className="coin">
       <div className="title">{coin.name}</div>
       <div className="chart"></div>
       <div className="section">
         <div className="heading">Overview</div>
-        <div className="data">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto nobis
-          accusamus est? Blanditiis, natus cupiditate? Illum, officiis ullam
-          dolore atque facilis in nostrum quae possimus aut est laboriosam illo
-          magnam eligendi nam temporibus animi et, tempore obcaecati assumenda
-          dolores sint ut nihil. Eligendi odit, dolor dolore sapiente numquam
-          nesciunt ullam dignissimos asperiores? Nemo distinctio voluptatibus
-          pariatur laboriosam saepe vel ab sunt in, enim fugiat vitae ratione
-          quod adipisci dolorem perferendis suscipit harum porro quia accusamus
-          laudantium iusto sequi, dolore nobis voluptas? Vero eum quidem
-          officia, aliquid aliquam voluptas illum itaque sint pariatur inventore
-          vitae exercitationem explicabo aut cupiditate harum veritatis!
-        </div>
+        <div className="data">{coin.description?.en}</div>
 
         <div className="grid">
           {data.map((e, index) => (
@@ -105,12 +101,16 @@ function Coin() {
             ))}
           </div>
 
-          <a href="#">Website</a>
-          <a href="#">Rediit</a>
+          <a href={`${(coin.links?.homepage ?? [])[0]}`} target="_blank">
+            Website
+          </a>
+          <a href={`${coin.links?.subreddit_url}`} target="_blank">
+            Rediit
+          </a>
         </div>
       </div>
     </div>
   );
 }
 
-export default Coin;
+export default CoinPage;

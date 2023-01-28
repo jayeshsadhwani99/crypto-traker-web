@@ -1,4 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import RootData from "./components/RootData";
 import { GlobalProvider } from "./context/GlobalContext";
 import Root from "./pages";
@@ -30,6 +31,7 @@ const router = createBrowserRouter([
 function App() {
   return (
     <GlobalProvider>
+      <ToastContainer></ToastContainer>
       <RouterProvider router={router} />
     </GlobalProvider>
   );

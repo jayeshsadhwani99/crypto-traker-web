@@ -8,3 +8,18 @@
   width: 100%;
   gap: 1rem;
 }
+
+.topMoving a {
+  color: var(--secondary-color);
+  transition: 0.2s;
+}
+
+.topMoving a:hover {
+  color: var(--secondary-color);
+}
+
+.topMoving a:hover div {
+  color: var(--secondary-color);
+  background-color: var(--light-gray);
+  transition: 0.2s;
+}

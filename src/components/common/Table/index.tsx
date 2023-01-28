@@ -28,8 +28,8 @@ function Table({
       </div>
       <div className="coinsList">
         {coins.map((coin, index) => (
-          <a href={`/${coin.id}`}>
-            <div className="coinElement" key={index}>
+          <a href={`/${coin.id}`} key={index}>
+            <div className="coinElement">
               <div className="tableColumn">
                 <div className="tableElement">{coin.market_cap_rank}</div>
                 <div className="tableElement">

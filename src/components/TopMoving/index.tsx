@@ -1,47 +1,21 @@
+import { useContext } from "react";
+import { CoinContext, CoinContextType } from "../../context/CoinContext";
 import TopMovingComponent from "../common/TopMovingComponent";
 import "./styles.css";
 
 function TopMoving() {
-  const coins = [
-    {
-      image:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/1200px-Bitcoin.svg.png",
-      symbol: "BTC",
-      price: 1234,
-      change: 2.3,
-    },
-    {
-      image:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/1200px-Bitcoin.svg.png",
-      symbol: "BTC",
-      price: 1234,
-      change: 2.3,
-    },
-    {
-      image:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/1200px-Bitcoin.svg.png",
-      symbol: "BTC",
-      price: 1234,
-      change: 2.3,
-    },
-    {
-      image:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/1200px-Bitcoin.svg.png",
-      symbol: "BTC",
-      price: 1234,
-      change: 2.3,
-    },
-  ];
+  const { topMovingCoins } = useContext(CoinContext) as CoinContextType;
 
   return (
     <div className="topMoving">
       <div className="title">Top Moving Coins</div>
       <div className="topMovingCoins">
-        {coins.map((coin, index) => (
+        {topMovingCoins.map((coin, index) => (
           <TopMovingComponent
-            change={coin.change}
+            coin={coin}
+            change={coin.price_change_percentage_24h ?? 0}
             image={coin.image}
-            price={coin.price}
+            price={coin.current_price}
             symbol={coin.symbol}
             key={index}
           />
