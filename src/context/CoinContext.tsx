@@ -1,4 +1,4 @@
-import { createContext, PropsWithChildren, useState } from "react";
+import { createContext, PropsWithChildren, useEffect, useState } from "react";
 import { Coin } from "../models/coin";
 import { CoinDetail } from "../models/coinDetail";
 
@@ -19,6 +19,10 @@ export const CoinProvider = ({ children }: PropsWithChildren) => {
   const [topMovingCoins, setTopMovingCoins] = useState<Coin[]>([]);
   const [portfolioCoins, setPortfolioCoins] = useState<Coin[]>([]);
   const [coinDetails, setCoinDetails] = useState<CoinDetail | null>(null);
+
+  useEffect(() => {
+    fetchCoins();
+  }, []);
 
   function fetchCoins() {
     configTopCoins();
