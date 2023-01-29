@@ -8,7 +8,12 @@ function Navbar() {
       </a>
       <div className="right">
         <a href="/about">About</a>
-        <a href="#">Github</a>
+        <a
+          href="https://github.com/jayeshsadhwani99/crypto-traker-web"
+          target="_blank"
+        >
+          Github
+        </a>
       </div>
     </div>
   );

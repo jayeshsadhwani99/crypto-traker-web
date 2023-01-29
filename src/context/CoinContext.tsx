@@ -15,14 +15,15 @@ export interface CoinContextType {
   coins: Coin[];
   topMovingCoins: Coin[];
   portfolioCoins: Coin[];
-  coinDetails: CoinDetail | null;
   overviewArray: Statistic[];
   additionalArray: Statistic[];
+  searchText: string;
   fetchCoins: () => Promise<Coin[] | undefined>;
   getCoinDetails: (coin: string) => Promise<CoinDetail | undefined>;
   updatePortfolio: (coin: Coin, amount: number) => void;
   getPortfolio: () => Coin[];
   setCoinData: (coinDetails: CoinDetail, coin: Coin) => void;
+  setSearchText: Function;
 }
 
 export const CoinContext = createContext<CoinContextType | null>(null);
@@ -45,16 +46,50 @@ export async function getCoinDetails(
 }
 
 export const CoinProvider = ({ children }: PropsWithChildren) => {
+  const [allCoinsList, setAllCoinsList] = useState<Coin[]>([]);
+  const [debouncedValue, setDebouncedValue] = useState<string>("");
+  const [searchText, setSearchText] = useState<string>("");
   const [coins, setCoins] = useState<Coin[]>([]);
   const [topMovingCoins, setTopMovingCoins] = useState<Coin[]>([]);
   const [portfolioCoins, setPortfolioCoins] = useState<Coin[]>([]);
-  const [coinDetails, setCoinDetails] = useState<CoinDetail | null>(null);
   const [overviewArray, setOverviewArray] = useState<Statistic[]>([]);
   const [additionalArray, setAdditionalArray] = useState<Statistic[]>([]);
 
   useEffect(() => {
     fetchCoins();
   }, []);
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setDebouncedValue(searchText);
+    }, 500);
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [searchText]);
+
+  useEffect(() => {
+    filterCoins();
+  }, [debouncedValue]);
+
+  function filterCoins(): Coin[] {
+    const text = searchText.toLowerCase();
+    if (!text || text == "") {
+      setCoins(allCoinsList);
+      return allCoinsList;
+    } else {
+      const coinList: Coin[] = allCoinsList.filter(
+        (e) =>
+          e.name.toLowerCase().includes(text) ||
+          e.symbol.toLowerCase().includes(text) ||
+          e.market_cap_rank.toString().includes(text)
+      );
+
+      setCoins(coinList);
+      return coinList;
+    }
+  }
 
   async function fetchCoins(): Promise<Coin[] | undefined> {
     try {
@@ -63,6 +98,7 @@ export const CoinProvider = ({ children }: PropsWithChildren) => {
         Convert.toCoin(JSON.stringify(e))
       );
       setCoins(allCoins);
+      setAllCoinsList(allCoins);
       configTopCoins(allCoins);
       getPortfolio();
       return allCoins;
@@ -188,14 +224,15 @@ export const CoinProvider = ({ children }: PropsWithChildren) => {
         coins,
         topMovingCoins,
         portfolioCoins,
-        coinDetails,
         overviewArray,
         additionalArray,
+        searchText,
         fetchCoins,
         getCoinDetails,
         updatePortfolio,
         getPortfolio,
         setCoinData,
+        setSearchText,
       }}
     >
       {children}

@@ -1,7 +1,27 @@
+import { ChangeEventHandler } from "react";
 import "./styles.css";
 
-function Input() {
-  return <div>Input</div>;
+interface InputProps {
+  type?: string;
+  placeholder?: string;
+  value: any;
+  handleChange: ChangeEventHandler;
+}
+
+function Input({
+  type = "text",
+  placeholder,
+  value,
+  handleChange,
+}: InputProps) {
+  return (
+    <input
+      type={type}
+      placeholder={placeholder}
+      value={value}
+      onChange={handleChange}
+    />
+  );
 }
 
 export default Input;

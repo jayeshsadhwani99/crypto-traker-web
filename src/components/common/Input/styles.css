@@ -1,0 +1,14 @@
+input {
+  padding: 1rem;
+  font-size: var(--body);
+  border-radius: 10px;
+  border: none;
+  width: 80%;
+  margin: 1rem;
+  margin-left: 0;
+}
+
+input:focus {
+  border: none;
+  outline: none;
+}
