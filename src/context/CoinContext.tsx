@@ -5,16 +5,24 @@ import { FETCH_COINS } from "../constants";
 import { Coin, Convert, updateHoldings } from "../models/coin";
 import { ConvertPortfolio, Portfolio } from "../models/portfolio";
 import { CoinDetail, ConvertCoinDetail } from "../models/coinDetail";
+import { Statistic } from "../models/statistic";
+import {
+  createAdditionalArray,
+  createOverviewArray,
+} from "../helpers/coinDetails";
 
 export interface CoinContextType {
   coins: Coin[];
   topMovingCoins: Coin[];
   portfolioCoins: Coin[];
   coinDetails: CoinDetail | null;
+  overviewArray: Statistic[];
+  additionalArray: Statistic[];
   fetchCoins: () => Promise<Coin[] | undefined>;
   getCoinDetails: (coin: string) => Promise<CoinDetail | undefined>;
   updatePortfolio: (coin: Coin, amount: number) => void;
   getPortfolio: () => Coin[];
+  setCoinData: (coinDetails: CoinDetail, coin: Coin) => void;
 }
 
 export const CoinContext = createContext<CoinContextType | null>(null);
@@ -41,6 +49,8 @@ export const CoinProvider = ({ children }: PropsWithChildren) => {
   const [topMovingCoins, setTopMovingCoins] = useState<Coin[]>([]);
   const [portfolioCoins, setPortfolioCoins] = useState<Coin[]>([]);
   const [coinDetails, setCoinDetails] = useState<CoinDetail | null>(null);
+  const [overviewArray, setOverviewArray] = useState<Statistic[]>([]);
+  const [additionalArray, setAdditionalArray] = useState<Statistic[]>([]);
 
   useEffect(() => {
     fetchCoins();
@@ -62,9 +72,12 @@ export const CoinProvider = ({ children }: PropsWithChildren) => {
     }
   }
 
-  async function coinDetail(coinId: string) {
-    const details = await getCoinDetails(coinId);
-    if (details) setCoinDetails(details);
+  function setCoinData(coinDetails: CoinDetail, coin: Coin) {
+    let overview: Statistic[] = createOverviewArray(coin);
+    let additional: Statistic[] = createAdditionalArray(coinDetails, coin);
+
+    setOverviewArray(overview);
+    setAdditionalArray(additional);
   }
 
   function configTopCoins(coins: Coin[]): Coin[] {
@@ -176,10 +189,13 @@ export const CoinProvider = ({ children }: PropsWithChildren) => {
         topMovingCoins,
         portfolioCoins,
         coinDetails,
+        overviewArray,
+        additionalArray,
         fetchCoins,
         getCoinDetails,
         updatePortfolio,
         getPortfolio,
+        setCoinData,
       }}
     >
       {children}

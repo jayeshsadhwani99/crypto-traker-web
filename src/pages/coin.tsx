@@ -1,6 +1,11 @@
-import { useLoaderData } from "react-router-dom";
+import { useContext, useEffect } from "react";
+import { useLoaderData, useParams } from "react-router-dom";
 import MarketStatComponent from "../components/common/MarketStatComponent";
-import { getCoinDetails } from "../context/CoinContext";
+import {
+  CoinContext,
+  CoinContextType,
+  getCoinDetails,
+} from "../context/CoinContext";
 import { Coin } from "../models/coin";
 import { CoinDetail } from "../models/coinDetail";
 import "../styles/coin.css";
@@ -13,59 +18,19 @@ export async function coinLoader({
   if (coinDetails) return coinDetails;
 }
 
-const data = [
-  {
-    title: "Market Cap",
-    value: 123,
-    change: 23,
-  },
-  {
-    title: "Market Cap",
-    value: 123,
-    change: 23,
-  },
-  {
-    title: "Market Cap",
-    value: 123,
-    change: 23,
-  },
-];
-
-const additionalData = [
-  {
-    title: "Market Cap",
-    value: 123,
-    change: 23,
-  },
-  {
-    title: "Market Cap",
-    value: 123,
-    change: 23,
-  },
-  {
-    title: "Market Cap",
-    value: 123,
-    change: 23,
-  },
-  {
-    title: "Market Cap",
-    value: 123,
-    change: 23,
-  },
-  {
-    title: "Market Cap",
-    value: 123,
-    change: 23,
-  },
-  {
-    title: "Market Cap",
-    value: 123,
-    change: 23,
-  },
-];
-
 function CoinPage() {
   const coin: CoinDetail | undefined = useLoaderData() as CoinDetail;
+  const { coinId } = useParams();
+  const { overviewArray, additionalArray, setCoinData, coins } = useContext(
+    CoinContext
+  ) as CoinContextType;
+
+  useEffect(() => {
+    if (coin && coinId) {
+      const coinData: Coin | undefined = coins.find((e) => e.id == coinId);
+      if (coinData) setCoinData(coin, coinData);
+    }
+  }, [coin, coinId]);
 
   return (
     <div className="coin">
@@ -78,11 +43,11 @@ function CoinPage() {
         </div>
 
         <div className="grid">
-          {data.map((e, index) => (
+          {overviewArray.map((e, index) => (
             <MarketStatComponent
               title={e.title}
               body={e.value.toString()}
-              subtext={e.change}
+              subtext={e.percentageChange}
               key={index}
             />
           ))}
@@ -93,11 +58,11 @@ function CoinPage() {
         <div className="heading">Additional Details</div>
         <div className="data">
           <div className="grid">
-            {additionalData.map((e, index) => (
+            {additionalArray.map((e, index) => (
               <MarketStatComponent
                 title={e.title}
                 body={e.value.toString()}
-                subtext={e.change}
+                subtext={e.percentageChange}
                 key={index}
               />
             ))}

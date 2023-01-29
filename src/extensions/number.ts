@@ -7,14 +7,6 @@ declare global {
   }
 }
 
-Number.prototype.toCurrency = function (): string {
-  return `$${this.toPrecision(2)}`;
-};
-
-Number.prototype.toPercent = function (): string {
-  return `${this.toPrecision(2)}%`;
-};
-
 Number.prototype.abs = function (): number {
   return Math.abs(this.valueOf());
 };
@@ -49,6 +41,14 @@ Number.prototype.formatWithAbbreviations = function (): string {
     default:
       return `${sign}${this.toFixed(2)}`;
   }
+};
+
+Number.prototype.toCurrency = function (): string {
+  return `$${this.formatWithAbbreviations()}`;
+};
+
+Number.prototype.toPercent = function (): string {
+  return `${this.toFixed(2)}%`;
 };
 
 export {};
