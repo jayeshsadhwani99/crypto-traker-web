@@ -2,7 +2,7 @@ import "./styles.css";
 
 interface MarketStatComponentProps {
   title: string;
-  body: number;
+  body: string;
   subtext?: number;
 }
 
@@ -14,14 +14,14 @@ function MarketStatComponent({
   return (
     <div className="marketStatComponent">
       <div className="top">{title}</div>
-      <div className="between">${body}</div>
+      <div className="between">{body}</div>
       <div
         className="bottom"
         style={{
           color: (subtext ?? 0) < 0 ? "var(--negative)" : "var(--positive)",
         }}
       >
-        {subtext && `${subtext}%`}
+        {subtext && `${subtext.toFixed(2)}%`}
       </div>
     </div>
   );

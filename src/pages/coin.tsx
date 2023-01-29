@@ -73,13 +73,15 @@ function CoinPage() {
       <div className="chart"></div>
       <div className="section">
         <div className="heading">Overview</div>
-        <div className="data">{coin.description?.en}</div>
+        <div className="data">
+          {coin.description?.en?.removingHTMLOccurances()}
+        </div>
 
         <div className="grid">
           {data.map((e, index) => (
             <MarketStatComponent
               title={e.title}
-              body={e.value}
+              body={e.value.toString()}
               subtext={e.change}
               key={index}
             />
@@ -94,7 +96,7 @@ function CoinPage() {
             {additionalData.map((e, index) => (
               <MarketStatComponent
                 title={e.title}
-                body={e.value}
+                body={e.value.toString()}
                 subtext={e.change}
                 key={index}
               />

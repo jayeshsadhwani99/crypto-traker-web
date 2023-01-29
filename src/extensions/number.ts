@@ -29,25 +29,25 @@ Number.prototype.formatWithAbbreviations = function (): string {
   switch (true) {
     case num >= 1e12:
       formatted = num / 1e12;
-      stringFormatted = formatted.toString();
+      stringFormatted = formatted.toFixed(2).toString();
       return `${sign}${stringFormatted}Tr`;
     case num >= 1e9:
       formatted = num / 1e9;
-      stringFormatted = formatted.toString();
+      stringFormatted = formatted.toFixed(2).toString();
       return `${sign}${stringFormatted}Bn`;
     case num >= 1e6:
       formatted = num / 1e6;
-      stringFormatted = formatted.toString();
+      stringFormatted = formatted.toFixed(2).toString();
       return `${sign}${stringFormatted}M`;
     case num >= 1e3:
       formatted = num / 1e3;
-      stringFormatted = formatted.toString();
+      stringFormatted = formatted.toFixed(2).toString();
       return `${sign}${stringFormatted}K`;
     case num >= 0:
       return this.toString();
 
     default:
-      return `${sign}${this}`;
+      return `${sign}${this.toFixed(2)}`;
   }
 };
 

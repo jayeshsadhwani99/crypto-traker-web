@@ -1,24 +1,13 @@
+import { useContext } from "react";
+import {
+  MarketDataContext,
+  MarketDataType,
+} from "../../context/MarketDataContext";
 import MarketStatComponent from "../common/MarketStatComponent";
 import "./styles.css";
 
 function MarketStats() {
-  const stats = [
-    {
-      title: "Market Cap",
-      body: 1234,
-      subtext: 23,
-    },
-    {
-      title: "Market Cap",
-      body: 1234,
-      subtext: 23,
-    },
-    {
-      title: "Market Cap",
-      body: 1234,
-      subtext: 23,
-    },
-  ];
+  const { stats } = useContext(MarketDataContext) as MarketDataType;
 
   return (
     <div className="marketStats">
@@ -27,9 +16,9 @@ function MarketStats() {
         {stats.map((stat, index) => (
           <MarketStatComponent
             key={index}
-            body={stat.body}
+            body={stat.value}
             title={stat.title}
-            subtext={stat.subtext}
+            subtext={stat.percentageChange}
           />
         ))}
       </div>
