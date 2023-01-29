@@ -15,3 +15,9 @@
 .portfolioCoinsList {
   width: 100%;
 }
+
+.portfolio .row {
+  display: flex;
+  overflow-x: scroll;
+  gap: 1rem;
+}
