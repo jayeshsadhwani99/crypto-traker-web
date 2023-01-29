@@ -1,4 +1,6 @@
+import { useContext, useRef } from "react";
 import Refresh from "../../../assets/refresh-cw";
+import { CoinContext, CoinContextType } from "../../../context/CoinContext";
 import { Coin, holdingsValue } from "../../../models/coin";
 import "./styles.css";
 
@@ -9,11 +11,18 @@ function Table({
   coins: Array<Coin>;
   isPortfolio?: boolean;
 }) {
+  const refreshBtn = useRef<any>(null);
+  const { fetchCoins } = useContext(CoinContext) as CoinContextType;
+
+  function refreshData() {
+    fetchCoins();
+  }
+
   return (
     <>
       <div className="coinElement">
         <div className="tableColumn">
-          <div className="tableElement">
+          <div className="tableElement" onClick={refreshData} ref={refreshBtn}>
             <Refresh />
           </div>
           <div className="tableElement">Coin</div>

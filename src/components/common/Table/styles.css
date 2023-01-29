@@ -47,3 +47,20 @@
 .coinElement #symbol {
   text-transform: uppercase;
 }
+
+.refresh {
+  animation-duration: 2s;
+  animation-timing-function: linear;
+  animation-name: rotate;
+  animation-iteration-count: 2;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

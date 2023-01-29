@@ -3,7 +3,7 @@ import { createContext, PropsWithChildren, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { FETCH_COINS } from "../constants";
 import { Coin, Convert, updateHoldings } from "../models/coin";
-import { ConvertPortfolio, Portfolio } from "../models/portfolio";
+import { Portfolio } from "../models/portfolio";
 import { CoinDetail, ConvertCoinDetail } from "../models/coinDetail";
 import { Statistic } from "../models/statistic";
 import {
