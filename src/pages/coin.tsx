@@ -1,6 +1,7 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useLoaderData, useParams } from "react-router-dom";
 import MarketStatComponent from "../components/common/MarketStatComponent";
+import LineChart from "../components/LineChart";
 import {
   CoinContext,
   CoinContextType,
@@ -20,6 +21,7 @@ export async function coinLoader({
 
 function CoinPage() {
   const coin: CoinDetail | undefined = useLoaderData() as CoinDetail;
+  const [coinInfo, setCoinInfo] = useState<Coin | null>(null);
   const { coinId } = useParams();
   const { overviewArray, additionalArray, setCoinData, coins } = useContext(
     CoinContext
@@ -28,14 +30,19 @@ function CoinPage() {
   useEffect(() => {
     if (coin && coinId) {
       const coinData: Coin | undefined = coins.find((e) => e.id == coinId);
-      if (coinData) setCoinData(coin, coinData);
+      if (coinData) {
+        setCoinInfo(coinData);
+        setCoinData(coin, coinData);
+      }
     }
   }, [coin, coinId]);
 
   return (
     <div className="coin">
       <div className="title">{coin.name}</div>
-      <div className="chart"></div>
+      <div className="chart">
+        <LineChart coin={coinInfo} />
+      </div>
       <div className="section">
         <div className="heading">Overview</div>
         <div className="data">
