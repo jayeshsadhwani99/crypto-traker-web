@@ -45,7 +45,9 @@ function Table({
               <div className="tableColumn right">
                 <div className="tableElement">
                   <div className="column">
-                    <div className="rowEl">${coin.current_price}</div>
+                    <div className="rowEl">
+                      {Number(coin.current_price.toFixed(2)).toCurrency()}
+                    </div>
                     <div
                       className="rowEl"
                       style={{
@@ -55,14 +57,17 @@ function Table({
                             : "var(--positive)",
                       }}
                     >
-                      {coin.price_change_percentage_24h?.toPrecision(2)}%
+                      {coin.price_change_percentage_24h?.toFixed(2)}%
                     </div>
                   </div>
 
                   {isPortfolio && (
                     <div className="column">
                       <div className="rowEl">
-                        ${holdingsValue(coin).formatWithAbbreviations()}
+                        $
+                        {Number(
+                          holdingsValue(coin).toFixed(2)
+                        ).formatWithAbbreviations()}
                       </div>
                       <div
                         className="rowEl"

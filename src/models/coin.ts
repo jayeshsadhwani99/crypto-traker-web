@@ -61,6 +61,5 @@ export function updateHoldings(coin: Coin, amount: number): Coin {
 }
 
 export function holdingsValue(coin: Coin): number {
-  console.log(coin);
   return (coin.currentHoldings ?? 0) * coin.current_price;
 }

@@ -3,17 +3,19 @@ import { CoinContext, CoinContextType } from "../../context/CoinContext";
 import MarketStatComponent from "../common/MarketStatComponent";
 import Table from "../common/Table";
 import "./styles.css";
+import { FaPlusCircle } from "react-icons/fa";
+import SheetComponent from "../SheetComponent";
 
 function Portfolio() {
+  const [open, setOpen] = useState(false);
   const [value, setValue] = useState<number>(0);
   const [percentageChange, setPercentageChange] = useState<number>(0);
   const { portfolioCoins } = useContext(CoinContext) as CoinContextType;
 
   const getPortfolioValue = () => {
-    const portfolioValue = portfolioCoins.reduce(
-      (prev, curr) => prev + (curr?.currentHoldings ?? 0 * curr.current_price),
-      0
-    );
+    const portfolioValue = portfolioCoins
+      .map((e) => (e.currentHoldings ?? 0) * e.current_price)
+      .reduce((prev, curr) => prev + curr, 0);
 
     const prevValue = portfolioCoins
       .map((e) => {
@@ -39,7 +41,13 @@ function Portfolio() {
 
   return (
     <div className="portfolio">
-      <div className="title">Portfolio</div>
+      <SheetComponent open={open} setOpen={setOpen} />
+      <div className="head">
+        <div className="title">Portfolio</div>
+        <div className="add" onClick={() => setOpen(true)}>
+          <FaPlusCircle fontSize={"var(--heading)"} />{" "}
+        </div>
+      </div>
 
       <div className="row">
         <MarketStatComponent

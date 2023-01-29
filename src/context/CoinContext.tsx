@@ -73,10 +73,13 @@ export const CoinProvider = ({ children }: PropsWithChildren) => {
     filterCoins();
   }, [debouncedValue]);
 
+  useEffect(() => {
+    getPortfolio();
+  }, [allCoinsList]);
+
   function filterCoins(): Coin[] {
     const text = searchText.toLowerCase();
     if (!text || text == "") {
-      setCoins(allCoinsList);
       return allCoinsList;
     } else {
       const coinList: Coin[] = allCoinsList.filter(
@@ -145,24 +148,25 @@ export const CoinProvider = ({ children }: PropsWithChildren) => {
     const pCoins: Coin[] = [];
     for (let i = 0; i < p.length; i++) {
       const portfolio = p[i];
-      const coin: Coin | undefined = coins.find((e) => e.id === portfolio.id);
+      const coin: Coin | undefined = allCoinsList.find(
+        (e) => e.id === portfolio.id
+      );
       if (coin) {
         coin.currentHoldings = portfolio.amount;
         pCoins.push(coin);
       }
     }
-
     setPortfolioCoins(pCoins);
     return pCoins;
   }
 
   function getPortfolioCoins(): Portfolio[] {
     const portfolio = localStorage.getItem("portfolio");
-    if (portfolio)
-      return JSON.parse(portfolio).map((e: any) =>
-        ConvertPortfolio.toPortfolio(JSON.stringify(e))
-      );
-    else return [];
+    if (portfolio) {
+      return JSON.parse(portfolio).map((e: any) => {
+        return e;
+      });
+    } else return [];
   }
 
   function savePortfolioCoins(coins: Portfolio[]) {

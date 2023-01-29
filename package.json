@@ -12,10 +12,14 @@
     "@lottiefiles/react-lottie-player": "^3.5.2",
     "axios": "^1.2.6",
     "chart.js": "^4.2.0",
+    "framer-motion": "^8.5.4",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.7.1",
+    "react-modal-sheet": "^1.10.0",
     "react-router-dom": "^6.8.0",
+    "react-spring-bottom-sheet": "^3.4.1",
     "react-toastify": "^9.1.1"
   },
   "devDependencies": {

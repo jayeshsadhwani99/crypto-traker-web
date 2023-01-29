@@ -21,3 +21,19 @@
   overflow-x: scroll;
   gap: 1rem;
 }
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.head .add {
+  cursor: pointer;
+  color: var(--secondary-color);
+  transition: all 0.2s;
+}
+
+.head .add:hover {
+  color: var(--brand-color);
+}
