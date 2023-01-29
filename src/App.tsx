@@ -1,5 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import Navbar from "./components/Navbar";
 import Portfolio from "./components/Portfolio";
 import RootData from "./components/RootData";
 import { GlobalProvider } from "./context/GlobalContext";
@@ -34,7 +35,12 @@ const router = createBrowserRouter([
   },
   {
     path: "portfolio",
-    element: <Portfolio />,
+    element: (
+      <>
+        <Navbar />
+        <Portfolio />
+      </>
+    ),
     errorElement: <ErrorPage />,
   },
 ]);

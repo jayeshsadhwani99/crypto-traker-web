@@ -13,10 +13,81 @@
   color: var(--brand-color);
 }
 
+.navbar .col {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.navbar .col .menu {
+  display: none;
+  font-size: var(--heading);
+}
+
+.navbar .col .menu:hover {
+  color: var(--brand-color);
+}
+
 .navbar .right {
   flex: 0.1;
   display: flex;
   justify-content: space-between;
+}
+
+.navbar .col {
+  font-size: var(--body);
+}
+
+.drawer {
+  background-color: var(--gray) !important;
+  text-align: left;
+  padding: 1rem;
+  font-size: var(--body);
+}
+
+.drawer .top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.drawer .heading {
+  font-size: var(--title);
+  font-weight: bold;
+}
+
+.drawer .heading::after {
+  content: "";
+  display: block;
+  margin-top: 1rem;
+  width: 50%;
+  height: 1px;
+  background-color: var(--secondary-color);
+}
+
+.options {
+  margin: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+@media (max-width: 700px) {
+  .navbar .col .menu {
+    display: block;
+    margin-right: 1rem;
+  }
+
+  .navbar .right {
+    display: none;
+    flex: 0;
+  }
+
+  .navbar .col {
+    flex: 1;
+    justify-content: center;
+    text-align: center;
+  }
 }
 
 @media (max-width: 1400px) {

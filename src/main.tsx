@@ -4,6 +4,7 @@ import App from "./App";
 import "./styles/index.css";
 
 import "react-toastify/dist/ReactToastify.css";
+import "react-modern-drawer/dist/index.css";
 
 import "./extensions";
 
