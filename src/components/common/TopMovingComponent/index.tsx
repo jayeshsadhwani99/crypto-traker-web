@@ -21,14 +21,14 @@ function TopMovingComponent({
       <div className="topMovingComponent">
         <img src={image} alt={symbol} />
         <div className="symbol">{symbol}</div>
-        <div className="price">${price}</div>
+        <div className="price">${price.toFixed(2)}</div>
         <div
           className="change"
           style={{
             color: (change ?? 0) < 0 ? "var(--negative)" : "var(--positive)",
           }}
         >
-          {change}%
+          {change.toFixed(2)}%
         </div>
       </div>
     </a>
