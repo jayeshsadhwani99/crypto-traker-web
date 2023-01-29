@@ -79,7 +79,7 @@ function CoinPage() {
             Website
           </a>
           <a href={`${coin.links?.subreddit_url}`} target="_blank">
-            Rediit
+            Reddit
           </a>
         </div>
       </div>

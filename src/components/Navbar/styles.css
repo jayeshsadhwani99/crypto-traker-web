@@ -30,7 +30,7 @@
 }
 
 .navbar .right {
-  flex: 0.1;
+  flex: 0.15;
   display: flex;
   justify-content: space-between;
 }
