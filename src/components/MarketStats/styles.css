@@ -9,3 +9,10 @@
   overflow-x: scroll;
   margin: 1rem 0;
 }
+
+@media (max-width: 800px) {
+  .stats {
+    gap: 0;
+    margin: 0;
+  }
+}

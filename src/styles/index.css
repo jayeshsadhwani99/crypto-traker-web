@@ -63,3 +63,17 @@ body {
     --light-gray: #e5e5e5;
   }
 }
+
+@media (max-width: 800px) {
+  :root {
+    --very-big-text: 6rem;
+    --big-text: 1.8rem;
+    --heading: 1.2rem;
+    --title: 1.2rem;
+    --body: 1rem;
+    --small-text: 0.5rem;
+    --sub-text: 0.35rem;
+
+    --chart-height: 25rem;
+  }
+}

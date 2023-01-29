@@ -107,6 +107,10 @@
     padding: 1rem 0;
   }
 
+  .about h1 {
+    line-height: 3.5rem;
+  }
+
   .about .left {
     flex: 0;
     width: 100%;

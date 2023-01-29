@@ -30,3 +30,15 @@
   font-size: var(--body);
   font-weight: bold;
 }
+
+@media (max-width: 800px) {
+  .topMovingComponent {
+    padding: 0.5rem 1rem;
+  }
+
+  .topMovingComponent img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 0.75rem;
+  }
+}
