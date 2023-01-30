@@ -1,7 +1,7 @@
 # Crypto Tracker
 
 This project is hosted on vercel.
-Here is the [Link](https://crypto-traker-web.vercel.app/)
+Here is the [Link](https://crypto-tracker-web.vercel.app/)
 
 This is a website made to compliment the iOS app made in SwiftUI
 It is written in react using vite as the build tool.
